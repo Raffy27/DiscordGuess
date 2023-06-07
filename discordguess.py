@@ -40,7 +40,7 @@ print()
 
 # Start bruteforce
 found = False
-i = 0
+i = int(input('starting discriminator: ')) -1
 discrim = "0000"
 
 while i<10000:
