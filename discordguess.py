@@ -40,12 +40,18 @@ print()
 
 # Start bruteforce
 found = False
-i = 0
+i = int(input('starting discriminator: ')) -1
+discrim = "0000"
+
 while i<10000:
     normalSleep = True
     i += 1
-    print('[',i,'] ', sep = '', end = '')
-    req['discriminator'] = i
+
+    #creating a valid 4 character discord discriminator id
+    discrim = f"{i:04}"
+
+    print('[',discrim,'] ', sep = '', end = '')
+    req['discriminator'] = discrim
     r = s.post('https://discordapp.com/api/v6/users/@me/relationships', data = json.dumps(req), headers = headers)
     if r.status_code == 204:   # Friend Request sent
         print(Fore.LIGHTGREEN_EX + 'Success!' + Fore.RESET)
@@ -69,7 +75,7 @@ while i<10000:
 
 print()
 if found:
-    print('Discord Tag: ', Fore.LIGHTBLUE_EX + req['username'], '#', i, sep = '')
+    print('Discord Tag: ', Fore.LIGHTBLUE_EX + req['username'], '#', discrim, sep = '')
 else:
     print(Fore.LIGHTRED_EX + 'This Discord Tag doesn\'t exist.')
 print()
